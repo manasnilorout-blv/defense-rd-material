@@ -5,18 +5,20 @@
 }
 
 :root {
-  --color-bg: #f8f9fa;
+  --color-bg: #f0f4f8;
   --color-surface: #ffffff;
-  --color-border: #e1e4e8;
-  --color-text: #24292e;
-  --color-text-secondary: #586069;
-  --color-primary: #0366d6;
-  --color-primary-hover: #0256b9;
-  --color-tab-active-bg: #ffffff;
-  --color-tab-inactive-bg: #f1f3f5;
+  --color-border: #d0d7de;
+  --color-text: #1f2937;
+  --color-text-secondary: #4b5563;
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-primary-light: #dbeafe;
+  --color-primary-lighter: #eff6ff;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
   --radius: 8px;
+  --radius-lg: 12px;
 }
 
 body {
@@ -34,95 +36,133 @@ body {
 
 /* Header */
 .header {
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-  padding: 1.25rem 2rem;
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  padding: 1.5rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
+  box-shadow: var(--shadow-md);
 }
 
 .header h1 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-text);
+  color: #ffffff;
+  letter-spacing: -0.025em;
 }
 
+/* Problem Selector - Prominent Card Style */
 .problem-selector {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.problem-selector label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-text-secondary);
+.problem-selector-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.problem-selector-label svg {
+  width: 16px;
+  height: 16px;
 }
 
 .problem-selector select {
-  padding: 0.5rem 2rem 0.5rem 0.75rem;
-  font-size: 0.875rem;
-  border: 1px solid var(--color-border);
+  padding: 0.625rem 2.5rem 0.625rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius);
-  background: var(--color-surface);
+  background: #ffffff;
   color: var(--color-text);
   cursor: pointer;
-  min-width: 300px;
+  min-width: 360px;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23586069' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232563eb' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 0.75rem center;
+  background-position: right 1rem center;
+  transition: all 0.2s ease;
+}
+
+.problem-selector select:hover {
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .problem-selector select:focus {
   outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
 }
 
-/* Tabs */
+/* Tabs - Blue Theme */
 .tabs {
-  background: var(--color-tab-inactive-bg);
-  padding: 0.75rem 2rem 0;
+  background: var(--color-surface);
+  padding: 0 2rem;
   display: flex;
-  gap: 0.25rem;
-  border-bottom: 1px solid var(--color-border);
+  gap: 0.5rem;
+  border-bottom: 2px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
 }
 
 .tab {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
+  padding: 1rem 1.5rem;
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-text-secondary);
   background: transparent;
   border: none;
-  border-radius: var(--radius) var(--radius) 0 0;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
   position: relative;
-  top: 1px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.tab::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  border-radius: 3px 3px 0 0;
+  transition: background 0.2s ease;
 }
 
 .tab:hover {
-  color: var(--color-text);
-  background: rgba(255, 255, 255, 0.5);
+  color: var(--color-primary);
+  background: var(--color-primary-lighter);
 }
 
 .tab.active {
   color: var(--color-primary);
-  background: var(--color-tab-active-bg);
-  border: 1px solid var(--color-border);
-  border-bottom-color: var(--color-surface);
+  background: var(--color-primary-light);
+  font-weight: 600;
+}
+
+.tab.active::after {
+  background: var(--color-primary);
 }
 
 .tab-icon {
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .tab-label {
@@ -133,7 +173,7 @@ body {
 .content {
   flex: 1;
   padding: 2rem;
-  max-width: 960px;
+  max-width: 1000px;
   width: 100%;
   margin: 0 auto;
 }
@@ -141,34 +181,37 @@ body {
 .markdown-content {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  padding: 2rem 2.5rem;
-  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 3rem;
+  box-shadow: var(--shadow-md);
 }
 
 /* Markdown Styles */
 .markdown-content h1 {
   font-size: 1.75rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-primary-light);
+  color: var(--color-primary-dark);
 }
 
 .markdown-content h2 {
   font-size: 1.4rem;
   font-weight: 600;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   margin-bottom: 0.75rem;
   color: var(--color-text);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .markdown-content h3 {
   font-size: 1.15rem;
   font-weight: 600;
-  margin-top: 1.5rem;
+  margin-top: 1.75rem;
   margin-bottom: 0.5rem;
-  color: var(--color-text);
+  color: var(--color-primary-dark);
 }
 
 .markdown-content h4 {
@@ -208,24 +251,27 @@ body {
 .markdown-content a {
   color: var(--color-primary);
   text-decoration: none;
+  font-weight: 500;
 }
 
 .markdown-content a:hover {
   text-decoration: underline;
+  color: var(--color-primary-dark);
 }
 
 .markdown-content code {
   font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
   font-size: 0.875em;
-  background: var(--color-bg);
+  background: var(--color-primary-lighter);
+  color: var(--color-primary-dark);
   padding: 0.2em 0.4em;
   border-radius: 4px;
 }
 
 .markdown-content pre {
-  background: #1e1e1e;
-  color: #d4d4d4;
-  padding: 1rem;
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 1.25rem;
   border-radius: var(--radius);
   overflow-x: auto;
   margin-bottom: 1rem;
@@ -233,6 +279,7 @@ body {
 
 .markdown-content pre code {
   background: transparent;
+  color: inherit;
   padding: 0;
 }
 
@@ -242,30 +289,40 @@ body {
   margin: 1rem 0;
   color: var(--color-text-secondary);
   font-style: italic;
+  background: var(--color-primary-lighter);
+  padding: 1rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
 }
 
 .markdown-content hr {
   border: none;
   border-top: 2px solid var(--color-border);
-  margin: 2rem 0;
+  margin: 2.5rem 0;
 }
 
 .markdown-content table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1rem;
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .markdown-content th,
 .markdown-content td {
   border: 1px solid var(--color-border);
-  padding: 0.75rem;
+  padding: 0.75rem 1rem;
   text-align: left;
 }
 
 .markdown-content th {
-  background: var(--color-bg);
+  background: var(--color-primary-light);
   font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+.markdown-content tr:nth-child(even) {
+  background: var(--color-bg);
 }
 
 /* Responsive */
@@ -273,13 +330,16 @@ body {
   .header {
     padding: 1rem;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+  }
+
+  .header h1 {
+    font-size: 1.25rem;
+    text-align: center;
   }
 
   .problem-selector {
     width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
   }
 
   .problem-selector select {
@@ -288,13 +348,14 @@ body {
   }
 
   .tabs {
-    padding: 0.5rem 1rem 0;
+    padding: 0 1rem;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    gap: 0.25rem;
   }
 
   .tab {
-    padding: 0.5rem 0.75rem;
+    padding: 0.75rem 1rem;
     font-size: 0.8rem;
   }
 
@@ -307,6 +368,6 @@ body {
   }
 
   .markdown-content {
-    padding: 1.25rem;
+    padding: 1.5rem;
   }
 }
